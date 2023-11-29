@@ -1,4 +1,4 @@
-# Thezos NFT Rental Project
+# Tezos NFT Rental Project
 
 ## Table of Contents
 - [Overview](#overview)
@@ -12,7 +12,7 @@
 - [Contact](#contact)
 
 ## Overview
-Thezos NFT Rental is an innovative platform designed for the rental of gaming items represented as Non-Fungible Tokens (NFTs), developed by Neti, a leading Blockchain Development Company.
+Tezos NFT Rental is an innovative platform designed for the rental of gaming items represented as Non-Fungible Tokens (NFTs), developed by Neti, a leading Blockchain Development Company.
 
 ## Technology Stack
 - **SmartPy**: A language for developing smart contracts on the Tezos blockchain.
@@ -44,7 +44,7 @@ Use the [smartpy.io environment](https://smartpy.io/ide?code=eJzlWltP5DYUfp9f4c6
 
 # Usage: LeaseManager Contract Entrypoints
 
-The `LeaseManager` contract in the Thezos NFT Rental Project has several entrypoints, each requiring specific data inputs. Below are the details for each entrypoint.
+The `LeaseManager` contract in the Tezos NFT Rental Project has several entrypoints, each requiring specific data inputs. Below are the details for each entrypoint.
 
 ## Entrypoint: `register`
 
@@ -126,7 +126,7 @@ To ensure that the NFT's status is accurately updated throughout the lease proce
 
 
 ## Contributing
-Contributions to the Thezos NFT Rental project are welcome. Please follow standard open-source contribution guidelines.
+Contributions to the Tezos NFT Rental project are welcome. Please follow standard open-source contribution guidelines.
 
 ## Contact
 For more information:
