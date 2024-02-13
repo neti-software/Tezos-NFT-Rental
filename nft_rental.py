@@ -1,5 +1,5 @@
 import smartpy as sp
-from templates import fa2_lib as fa2
+from smartpy.templates import fa2_lib as fa2
 
 t = fa2.t
 #Thezos NFT Rental - Gaming NFT Item Rentals
@@ -256,9 +256,9 @@ def LeaseNFT():
 
 if "templates" not in __name__:
 
-    @sp.add_test(name="GameItem Test")
+    @sp.add_test()
     def test_game_item():
-        scenario = sp.test_scenario([fa2.t, fa2.main, LeaseNFT])
+        scenario = sp.test_scenario("GameItem Test", [fa2.t, fa2.main, LeaseNFT])
         lease_manager = LeaseNFT.LeaseManager()
         admin = sp.test_account("admin")
         recipient = sp.test_account("recipient")
@@ -302,7 +302,7 @@ if "templates" not in __name__:
         )
 
         transfer = sp.record(from_=recipient.address, txs=[tx])
-        game_item.transfer([transfer]).run(sender=recipient, valid=False)
+        game_item.transfer([transfer]).run(sender=recipient.address, valid=False)
 
         # lease registered nft token by recipient2
         lease_manager.lease(
