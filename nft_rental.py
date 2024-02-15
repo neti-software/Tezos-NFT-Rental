@@ -283,7 +283,8 @@ if "templates" not in __name__:
         )
 
         transfer = sp.record(from_=recipient.address, txs=[tx])
-        game_item.transfer([transfer]).run(sender=recipient, valid=True)
+        #game_item.transfer([transfer]).run(sender=recipient, valid=True)
+        game_item.transfer([transfer], _sender=recipient, _valid=True)
 
         # register nft token in lease contract
         lease_manager.register(
@@ -291,8 +292,9 @@ if "templates" not in __name__:
                 token_address=game_item.address,
                 token_id=0,
                 lease_contract=lease_manager.address,
-            )
-        ).run(sender=recipient)
+            ),
+            _sender=recipient
+        )#.run(sender=recipient)
 
         # transfer registered nft token to admin user - invalid
         tx = sp.record(
@@ -302,14 +304,15 @@ if "templates" not in __name__:
         )
 
         transfer = sp.record(from_=recipient.address, txs=[tx])
-        game_item.transfer([transfer]).run(sender=recipient.address, valid=False)
+        game_item.transfer([transfer], _sender=recipient, _valid=False)
 
         # lease registered nft token by recipient2
         lease_manager.lease(
             token_address=game_item.address,
             token_id=0,
             lease_contract=lease_manager.address,
-        ).run(sender=recipient2)
+            _sender=recipient2
+        )
 
         # transfer leased nft token to admin user by recipient2 - invalid
         tx = sp.record(
@@ -319,21 +322,24 @@ if "templates" not in __name__:
         )
 
         transfer = sp.record(from_=recipient2.address, txs=[tx])
-        game_item.transfer([transfer]).run(sender=recipient2, valid=False)
+        game_item.transfer([transfer], _sender=recipient2, _valid=False)
 
         # unlease leased nft token by recipient2 - not valid
         lease_manager.unlease(
             token_address=game_item.address,
             token_id=0,
             lease_contract=lease_manager.address,
-        ).run(sender=recipient2, valid=False)
+            _sender=recipient2,
+            _valid=False
+        )
 
         # unlease leased nft token by recipient
         lease_manager.unlease(
             token_address=game_item.address,
             token_id=0,
             lease_contract=lease_manager.address,
-        ).run(sender=recipient)
+            _sender=recipient
+        )
 
         # transfer unleased nft token by recipient to admin - valid
         tx = sp.record(
@@ -343,8 +349,7 @@ if "templates" not in __name__:
         )
 
         transfer = sp.record(from_=recipient.address, txs=[tx])
-
-        game_item.transfer([transfer]).run(sender=recipient, valid=True)
+        game_item.transfer([transfer], _sender=recipient, _valid=True)
 
         scenario.verify(game_item.data.ledger[0] != lease_manager.address)
         scenario.verify(game_item.data.ledger[0] != recipient.address)
